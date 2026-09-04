@@ -53,10 +53,37 @@ void document_test() {
 
 }
 
+void message_test() {
+   
+    Message m1(MessageRole::User, "who's that pokemon");
+    assert(m1.role() == MessageRole::User);
+    assert(m1.text() == "who's that pokemon");
+    assert(m1.empty() == false);
+
+
+    Message m2(MessageRole::Assistant, "");
+    assert(m2.empty() == true);
+
+
+    m2.setRole(MessageRole::System);
+    m2.setText("System initialized.");
+    assert(m2.role() == MessageRole::System);
+    assert(m2.text() == "System initialized.");
+    assert(m2.empty() == false);
+
+    
+    Message m3(MessageRole::System, "System initialized.");
+    assert(m2 == m3);
+
+    Message m4(MessageRole::User, "System initialized.");
+    assert(m2 != m4);
+}
+
 int main() {
     prompt_smoke_test();
     //workspace_smoke_test();
 	document_test();
+    message_test();
 
     // TODO: Add your own meaningful M0 tests.
     // See the Testing Requirements section of the specification.
