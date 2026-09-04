@@ -1,5 +1,7 @@
 #include "Message.hpp"
 
+
+
 Message::Message(MessageRole role, std::string text) : role_(role), text_(std::move(text)) {
 
 }

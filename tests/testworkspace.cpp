@@ -36,20 +36,23 @@ void document_test() {
 	assert(d2 != d1);
 	assert(d2 == d3);
 
+	std::ofstream out("sample.txt");
+	out << "Sample text.";
+	out.close();
 
 
     Document d4;
-	assert(d4.load("../text/sample.txt"));
+	assert(d4.load("sample.txt"));
 	assert(d4.title() == "sample.txt");
-	assert(d4.sourcePath() == "../text/sample.txt");
-	assert(d4.contents() == "Requirements should be clear, testable, and traceable.\n");
-	assert(d4.characterCount() == 55);
+	assert(d4.sourcePath() == "sample.txt");
+	assert(d4.contents() == "Sample text.");
+	assert(d4.characterCount() == 12);
 
 	assert(d4.load("nonexistent.txt") == false);
 	assert(d4.title() == "sample.txt");
-	assert(d4.sourcePath() == "../text/sample.txt");
-	assert(d4.contents() == "Requirements should be clear, testable, and traceable.\n");
-	assert(d4.characterCount() == 55);
+	assert(d4.sourcePath() == "sample.txt");
+	assert(d4.contents() == "Sample text.");
+	assert(d4.characterCount() == 12);
 
 }
 

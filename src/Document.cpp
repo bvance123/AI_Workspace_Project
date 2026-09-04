@@ -38,6 +38,8 @@ bool Document::load(const std::string& path) {
 
 	std::filesystem::path filePath(path);
 	title_ = filePath.filename().string();  // get the title
+
+	return true; 
 }
 
 const std::string& Document::title() const noexcept {

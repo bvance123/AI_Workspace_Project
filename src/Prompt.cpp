@@ -1,5 +1,7 @@
 #include "Prompt.hpp"
 
+
+
 Prompt::Prompt(std::string title, std::string text) : title_(std::move(title)), text_(std::move(text)) {
 
 }
@@ -35,6 +37,6 @@ void Prompt::setText(std::string text) {
 }
 
 bool Prompt::empty() const noexcept {
-	return title_.empty() && text_.empty();
+	return text_.empty(); //&&title_.empty() ;
 
 }
