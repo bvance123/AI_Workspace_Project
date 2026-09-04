@@ -54,7 +54,7 @@ void document_test() {
 }
 
 int main() {
-    //prompt_smoke_test();
+    prompt_smoke_test();
     //workspace_smoke_test();
 	document_test();
 
