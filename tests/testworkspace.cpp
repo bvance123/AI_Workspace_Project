@@ -81,12 +81,46 @@ void message_test() {
 
 int main() {
     prompt_smoke_test();
-    //workspace_smoke_test();
+    workspace_smoke_test();
 	document_test();
     message_test();
 
-    // TODO: Add your own meaningful M0 tests.
-    // See the Testing Requirements section of the specification.
+	Workspace ws("AI Research");
+
+	assert(ws.name() == "AI Research");
+	ws.setName("AI Development");
+	assert(ws.name() == "AI Development");
+
+	assert(ws.documentCount() == 0);
+    Document doc1;
+	ws.addDocument(doc1);
+	assert(ws.documentCount() == 1);
+
+	assert(ws.promptCount() == 0);
+	Prompt prompt1("Reviewer", "Review this requirement.");
+	ws.addPrompt(prompt1);
+	assert(ws.promptCount() == 1);
+	assert(ws.promptAt(0) == prompt1);
+	assert(ws.promptAt(0).title() == "Reviewer");
+
+	assert(ws.messageCount() == 0);
+	Message msg1(MessageRole::User, "Who's that pokemon?");	
+	ws.addMessage(msg1);	
+	assert(ws.messageCount() == 1);
+	assert(ws.messageAt(0) == msg1);
+	assert(ws.messageAt(0).role() == MessageRole::User);
+	assert(ws.messageAt(0).text() == "Who's that pokemon?");
+
+	Workspace ws2("AI Development");
+	ws2.addDocument(doc1);
+	ws2.addPrompt(prompt1);	
+	ws2.addMessage(msg1);	
+
+	assert(ws == ws2);
+
+	Workspace ws3("Never Knows Best");
+
+	assert(ws != ws3);
 
     std::cout << "M0 tests passed\n";
     return 0;
